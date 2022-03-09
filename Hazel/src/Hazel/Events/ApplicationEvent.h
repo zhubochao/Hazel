@@ -46,45 +46,6 @@ namespace Hazel
 	};
 
 
-	class HAZEL_API WindowFocusEvent : public Event
-	{
-		WindowFocusEvent() {}
-
-		std::string ToString() const override
-		{
-			std::stringstream ss;
-			ss << "WindowFocusEvent: ";
-			return ss.str();
-		}
-
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
-		EVENT_CLASS_TYPE(WindowFocus)
-	};
-
-	class HAZEL_API WindowLostFocusEvent : public Event
-	{
-		WindowLostFocusEvent() {}
-
-		std::string ToString() const override
-		{
-			std::stringstream ss;
-			ss << "WindowLostFocusEvent: ";
-			return ss.str();
-		}
-
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
-		EVENT_CLASS_TYPE(WindowLostFocus)
-	};
-
-
-
-	class HAZEL_API AppRenderEvent : public Event
-	{
-		AppRenderEvent() {}
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
-		EVENT_CLASS_TYPE(AppRender)
-	};
-
 	class HAZEL_API AppTickEvent : public Event
 	{
 		AppTickEvent() {}
