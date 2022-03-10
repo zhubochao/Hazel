@@ -25,7 +25,7 @@ namespace Hazel
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "KeyReleasedEvent: " << m_Button;
+			ss << "KeyPressedEvent: " << m_Button;
 			return ss.str();
 		}
 
@@ -83,7 +83,7 @@ namespace Hazel
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseMovedEvent: " << m_OffsetX << "," << m_OffsetY;
+			ss << "MouseScrolledEvent: " << m_OffsetX << "," << m_OffsetY;
 			return ss.str();
 		}
 

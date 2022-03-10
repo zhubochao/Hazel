@@ -15,6 +15,10 @@
 #include<unordered_set>
 
 #include"Hazel/Log.h"
+#include"Hazel/Events/Event.h"
+#include "Hazel/Events/ApplicationEvent.h"
+#include "Hazel/Events/MouseEvent.h"
+#include "Hazel/Events/KeyEvent.h"
 
 #ifdef HZ_PLATFORM_WINDOWS
 #include<Windows.h>
