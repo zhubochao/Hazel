@@ -19,5 +19,6 @@
 	#define HZ_CORE_ASSERT(x, ...)
 #endif
 
+#define HZ_BIND_FUNC(x) std::bind(&x, this, std::placeholders::_1)
 
 #define BIT(x) (1 << x)
