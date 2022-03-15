@@ -15,19 +15,12 @@ namespace Hazel
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void OnAttach() ;
-		void OnDetach() ;
-		void OnUpdate() ;
-		void OnEvent(Event& event);
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
+		virtual void OnImGuiRender() override;
 
-		bool OnKeyPressedEvent(KeyPressedEvent& );
-		bool OnKeyReleasedEvent(KeyReleasedEvent&);
-		bool OnKeyTypedEvent(KeyTypedEvent&);
-		bool OnMouseScrolledEvent(MouseScrolledEvent&);
-		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& );
-		bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent&);
-		bool OnMouseMovedEvent(MouseMovedEvent&);
-		bool OnWindowResizeEvent(WindowResizeEvent&);
+		void Begin();
+		void End();
 
 	private:
 		float m_Time = 0.0f;
