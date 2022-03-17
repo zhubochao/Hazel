@@ -2,7 +2,7 @@
 #include"Hazel.h"
 #include "glm/glm.hpp"
 
-#include <glm/gtc/type_ptr.hpp>
+#include "imgui/imgui.h"
 
 
 class ExampleLayer : public Hazel::Layer
@@ -11,6 +11,13 @@ public:
 	ExampleLayer() : Layer("Example") 
 	{
 		
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test£¡£¡"); 
+		ImGui::Text("Hello ");
+		ImGui::End();
 	}
 
 	void OnUpdate() override 
@@ -33,6 +40,7 @@ public:
 	}
 	
 };
+
 
 
 class SandBox : public Hazel::Application
