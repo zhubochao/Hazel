@@ -2,7 +2,8 @@
 
 #include <string>
 
-namespace Hazel {
+namespace Hazel 
+{
 
 	class Shader
 	{
