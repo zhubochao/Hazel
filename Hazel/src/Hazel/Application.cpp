@@ -3,6 +3,7 @@
 #include "Events/Event.h"
 #include "Input.h"
 #include "Platform/OpenGL/OpenGLBuffer.h"
+#include "Hazel/Renderer/Renderer.h"
 
 #include <glad/glad.h>
 
@@ -165,17 +166,20 @@ namespace Hazel {
 
 	void Application::Run() {
 		while (m_Running)
-		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+		{	
+			RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1});
+			RenderCommand::Clear();
 
+			Renderer::BeginScene();
 			m_ShaderRect->Bind();
 			m_VARect->Bind();
-			glDrawElements(GL_TRIANGLES, m_VARect->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			RenderCommand::DrawIndexed(m_VARect);
+			//glDrawElements(GL_TRIANGLES, m_VARect->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			m_ShaderTraingle->Bind();
 			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			RenderCommand::DrawIndexed(m_VertexArray);
+			//glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 			
 			for (Layer* layer : m_LayerStack)
 			{
