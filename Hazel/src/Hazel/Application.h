@@ -4,10 +4,8 @@
 #include "Hazel/LayerStack.h"
 #include "Events/ApplicationEvent.h"
 #include "Hazel/ImGui/ImGuiLayer.h"
-#include "Hazel/Renderer/Shader.h"
-#include "Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
-#include "Hazel/Renderer/OrthographicCamera.h"
+
+
 
 namespace Hazel{
 	class HAZEL_API Application
@@ -34,11 +32,8 @@ namespace Hazel{
 		LayerStack m_LayerStack;
 		static Application* m_Instance;
 
-		std::shared_ptr<Shader> m_ShaderTraingle, m_ShaderRect;
+		float m_LastFrameTime;
 
-		std::shared_ptr <VertexArray> m_VertexArray,m_VARect;
-
-		OrthographicCamera m_Camera;
 	};
 
 
