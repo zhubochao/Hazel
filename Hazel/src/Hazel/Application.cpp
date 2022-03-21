@@ -13,6 +13,7 @@ namespace Hazel {
 
 	Application* Application::m_Instance = nullptr;
 	Application::Application()
+		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		HZ_ASSERT(!m_Instance, "Application already exists!");
 		m_Instance = this;
@@ -56,13 +57,16 @@ namespace Hazel {
 			
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
+
+			uniform mat4 u_ViewProjection;
+
 			out vec3 v_Position;
 			out vec4 v_Color;
 			void main()
 			{
 				v_Position = a_Position;
 				v_Color = a_Color;
-				gl_Position = vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -115,9 +119,12 @@ namespace Hazel {
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
+
+			uniform mat4 u_ViewProjection;
+
 			void main()
 			{
-				gl_Position = vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -170,15 +177,14 @@ namespace Hazel {
 			RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1});
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
-			m_ShaderRect->Bind();
-			m_VARect->Bind();
-			RenderCommand::DrawIndexed(m_VARect);
+			Renderer::BeginScene(m_Camera);
+			m_Camera.SetPosition({0.5, 0.5, 0.0});
+			m_Camera.SetRotation(45);
+			Renderer::Submit(m_ShaderRect, m_VARect);
+			Renderer::Submit(m_ShaderTraingle, m_VertexArray);
+			Renderer::EndScene();
 			//glDrawElements(GL_TRIANGLES, m_VARect->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
-			m_ShaderTraingle->Bind();
-			m_VertexArray->Bind();
-			RenderCommand::DrawIndexed(m_VertexArray);
 			//glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 			
 			for (Layer* layer : m_LayerStack)
