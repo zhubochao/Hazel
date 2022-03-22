@@ -5,7 +5,7 @@ namespace Hazel
 	class Timestep
 	{
 	public:
-		Timestep(float time) : m_Time(time)
+		Timestep(float time = 0) : m_Time(time)
 		{
 
 		}
