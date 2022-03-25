@@ -17,6 +17,11 @@ namespace Hazel
 			s_RendererAPI->Clear();
 		}
 
+		inline static void Init()
+		{
+			return s_RendererAPI->Init();
+		}
+
 		inline static void DrawIndexed(const Ref<VertexArray>& vertexArray)
 		{
 			s_RendererAPI->DrawIndexed(vertexArray);
