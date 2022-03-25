@@ -1,18 +1,17 @@
+#include <Hazel.h>
 
-#include"Hazel.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
-#include "glm/glm.hpp"
 #include "imgui/imgui.h"
 
-
-#include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public Hazel::Layer
 {
 public:
-	ExampleLayer() : Layer("Example") ,  m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+	ExampleLayer()
+		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
 	{
 		m_VertexArray.reset(Hazel::VertexArray::Create());
 
@@ -22,21 +21,42 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<Hazel::VertexBuffer> VBTraingle(Hazel::VertexBuffer::Create(vertices, sizeof(vertices)));
-
-		Hazel::BufferLayout layout =
-		{
+		Hazel::Ref<Hazel::VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(Hazel::VertexBuffer::Create(vertices, sizeof(vertices)));
+		Hazel::BufferLayout layout = {
 			{ Hazel::ShaderDataType::Float3, "a_Position" },
 			{ Hazel::ShaderDataType::Float4, "a_Color" }
 		};
-		VBTraingle->SetLayout(layout);
-
-		m_VertexArray->AddVertexBuffer(VBTraingle);
+		vertexBuffer->SetLayout(layout);
+		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Hazel::IndexBuffer> IBTraingle(Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		Hazel::Ref<Hazel::IndexBuffer> indexBuffer;
+		indexBuffer.reset(Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		m_VertexArray->SetIndexBuffer(indexBuffer);
+//---------------------------------------------------------------------------------------
+		m_SquareVA.reset(Hazel::VertexArray::Create());
 
-		m_VertexArray->SetIndexBuffer(IBTraingle);
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
+		};
+
+		Hazel::Ref<Hazel::VertexBuffer> squareVB;
+		squareVB.reset(Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB->SetLayout({
+			{ Hazel::ShaderDataType::Float3, "a_Position" },
+			{ Hazel::ShaderDataType::Float2, "a_TexCoord" }
+		});
+		m_SquareVA->AddVertexBuffer(squareVB);
+
+		uint32_t squareIndices[6] = { 0, 1, 2, 
+									2, 3, 0 };
+		Hazel::Ref<Hazel::IndexBuffer> squareIB;
+		squareIB.reset(Hazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vertexSrc = R"(
 			#version 330 core
@@ -49,6 +69,7 @@ public:
 
 			out vec3 v_Position;
 			out vec4 v_Color;
+
 			void main()
 			{
 				v_Position = a_Position;
@@ -61,8 +82,10 @@ public:
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
+
 			in vec3 v_Position;
 			in vec4 v_Color;
+
 			void main()
 			{
 				color = vec4(v_Position * 0.5 + 0.5, 1.0);
@@ -70,38 +93,9 @@ public:
 			}
 		)";
 
-		m_ShaderTraingle.reset(Hazel::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Hazel::Shader::Create(vertexSrc, fragmentSrc);
 
-		m_VARect.reset(Hazel::VertexArray::Create());
-
-		float verticesRect[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
-		};
-
-		std::shared_ptr<Hazel::VertexBuffer> VBRect(Hazel::VertexBuffer::Create(verticesRect, sizeof(verticesRect)));
-
-		//m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-
-		Hazel::BufferLayout layoutRect =
-		{
-			{ Hazel::ShaderDataType::Float3, "a_Position" }
-		};
-		VBRect->SetLayout(layoutRect);
-		//m_VertexBuffer->SetLayout(layout);
-
-		m_VARect->AddVertexBuffer(VBRect);
-
-		uint32_t indicesRect[6] = { 0, 1, 2,
-									2, 3, 0 };
-		std::shared_ptr<Hazel::IndexBuffer> IBRect(Hazel::IndexBuffer::Create(indicesRect, sizeof(indicesRect) / sizeof(uint32_t)));
-		//m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-
-		m_VARect->SetIndexBuffer(IBRect);
-
-		std::string vertexRectSrc = R"(
+		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -109,114 +103,169 @@ public:
 			uniform mat4 u_ViewProjection;
 			uniform mat4 u_Transform;
 
+			out vec3 v_Position;
+
 			void main()
 			{
+				v_Position = a_Position;
 				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 			}
 		)";
 
-		std::string fragmentRectSrc = R"(
+		std::string flatColorShaderFragmentSrc = R"(
 			#version 330 core
+			
 			layout(location = 0) out vec4 color;
 
+			in vec3 v_Position;
+			
 			uniform vec3 u_Color;
 
 			void main()
 			{
-				color = vec4(u_Color,1.0f);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_ShaderRect.reset(Hazel::Shader::Create(vertexRectSrc, fragmentRectSrc));
+		m_FlatColorShader = Hazel::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
+
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+			
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader = Hazel::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc);
+
+		m_Texture = Hazel::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_Texture->Bind();
+
+		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
-		virtual void OnImGuiRender() override
+	void OnUpdate(Hazel::Timestep ts) override
+	{
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_LEFT))
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
+		else if (Hazel::Input::IsKeyPressed(HZ_KEY_RIGHT))
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
+
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_UP))
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
+		else if (Hazel::Input::IsKeyPressed(HZ_KEY_DOWN))
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
+
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_A))
+			m_CameraRotation += m_CameraRotationSpeed * ts;
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_D))
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
+
+		Hazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+		Hazel::RenderCommand::Clear();
+
+		m_Camera.SetPosition(m_CameraPosition);
+		m_Camera.SetRotation(m_CameraRotation);
+
+		Hazel::Renderer::BeginScene(m_Camera);
+
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+
+		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		
+		for (int y = 0; y < 20; y++)
 		{
-
-		}
-
-		void OnUpdate(Hazel::Timestep ts) override
-		{
-			//HZ_TRACE("Frame Time {0}s, fps: {1}", ts.GetTime(), 1000.0/ts.GetMillisecondTime());
-			if (Hazel::Input::IsKeyPressed(HZ_KEY_LEFT))
-				m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-			else if (Hazel::Input::IsKeyPressed(HZ_KEY_RIGHT))
-				m_CameraPosition.x += m_CameraMoveSpeed * ts;
-
-			if (Hazel::Input::IsKeyPressed(HZ_KEY_UP))
-				m_CameraPosition.y += m_CameraMoveSpeed * ts;
-			else if (Hazel::Input::IsKeyPressed(HZ_KEY_DOWN))
-				m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-			if (Hazel::Input::IsKeyPressed(HZ_KEY_A))
-				m_CameraRotation += m_CameraRotationSpeed * ts;
-			if (Hazel::Input::IsKeyPressed(HZ_KEY_D))
-				m_CameraRotation -= m_CameraRotationSpeed * ts;
-
-			
-			Hazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-			Hazel::RenderCommand::Clear();
-
-			m_Camera.SetPosition(m_CameraPosition);
-			m_Camera.SetRotation(m_CameraRotation);
-
-			Hazel::Renderer::BeginScene(m_Camera);
-
-			glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-
-			std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_ShaderRect)->Bind();
-			std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_ShaderRect)->UploadUniformFloat3("u_Color", m_SquareColor);
-
-			for (int y = 0; y < 20; y++)
+			for (int x = 0; x < 20; x++)
 			{
-				for (int x = 0; x < 20; x++)
-				{
-					glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
-					glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-					Hazel::Renderer::Submit(m_ShaderRect, m_VARect, transform);
-				}
+				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				Hazel::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
-
-			
-			Hazel::Renderer::Submit(m_ShaderTraingle, m_VertexArray);
-			Hazel::Renderer::EndScene();
 		}
+		
+		m_Texture->Bind(); 
+		m_SquareVA->Bind();
+		Hazel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
-		void OnEvent(Hazel::Event& event) override
-		{
+		// Triangle
+		// Hazel::Renderer::Submit(m_Shader, m_VertexArray);
 
-		}
-	private:
-		std::shared_ptr<Hazel::Shader> m_ShaderTraingle, m_ShaderRect;
+		Hazel::Renderer::EndScene();
+	}
 
-		std::shared_ptr <Hazel::VertexArray> m_VertexArray, m_VARect;
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
+	}
 
-		Hazel::OrthographicCamera m_Camera;
+	void OnEvent(Hazel::Event& event) override
+	{
+	}
+private:
+	Hazel::Ref<Hazel::Shader> m_Shader;
+	Hazel::Ref<Hazel::VertexArray> m_VertexArray;
 
-		glm::vec3 m_CameraPosition;
+	Hazel::Ref<Hazel::Shader> m_FlatColorShader, m_TextureShader;
+	Hazel::Ref<Hazel::VertexArray> m_SquareVA;
 
-		float m_CameraMoveSpeed = 5.0f;
+	Hazel::Ref<Hazel::Texture2D> m_Texture;
 
-		float m_CameraRotation = 0.0f;
-		float m_CameraRotationSpeed = 180.0f;
-		glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
+	Hazel::OrthographicCamera m_Camera;
+	glm::vec3 m_CameraPosition;
+	float m_CameraMoveSpeed = 5.0f;
+
+	float m_CameraRotation = 0.0f;
+	float m_CameraRotationSpeed = 180.0f;
+
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
-
-
-class SandBox : public Hazel::Application
+class Sandbox : public Hazel::Application
 {
 public:
-	SandBox() 
-	{ 
+	Sandbox()
+	{
 		PushLayer(new ExampleLayer());
-	};
-	~SandBox() {};
+	}
 
+	~Sandbox()
+	{
+
+	}
 
 };
 
-
-Hazel::Application* Hazel::CreateApplication() {
-	return new SandBox();
+Hazel::Application* Hazel::CreateApplication()
+{
+	return new Sandbox();
 }

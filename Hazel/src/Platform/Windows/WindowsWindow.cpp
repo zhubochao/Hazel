@@ -122,7 +122,7 @@ namespace Hazel
 					}
 				}
 			});
-			glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double x_offset, double y_offset)
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double x_offset, double y_offset)
 				{
 					WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -130,7 +130,7 @@ namespace Hazel
 					data.EventCallback(event);
 				});
 
-			glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double x_pos, double y_pos)
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double x_pos, double y_pos)
 				{
 					WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
