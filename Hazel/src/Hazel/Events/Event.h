@@ -37,30 +37,28 @@ namespace Hazel
 		virtual const char* GetName() const = 0;
 		virtual int GetCategroyFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
-		virtual bool Handled() const {return m_Handled;}
+		//virtual bool Handled() const {return m_Handled;}
 		inline bool IsInCategory(EventCategory category)
 		{
 			return GetCategroyFlags() & category;
 		}
-	protected:
+	public:
 		bool m_Handled = false;
 	};
 
 
 	class EventDispatcher
 	{
-		template<typename T>
-		using EventFn = std::function<bool(T&)>;
 		// a function which takes T& returns bool
 	public:
 		EventDispatcher(Event& event) : m_Event(event) {}
 		
-		template<typename T>
-		bool DisPatch(EventFn<T> func)
+		template<typename T, typename F>
+		bool Dispatch(const F& func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.m_Handled = func(static_cast<T&>(m_Event));
 				return true;
 			}
 			return false;
