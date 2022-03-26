@@ -9,7 +9,7 @@
 #include "Hazel/Input.h"
 #include "Hazel/KeyCodes.h"
 #include "Hazel/MouseButton.h"
-
+#include "Hazel/OrthographicCameraController.h"
 
 // ---Renderer------------------------
 #include "Hazel/Renderer/Renderer.h"
