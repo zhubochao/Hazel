@@ -3,6 +3,14 @@
 bin/
 bin-int/
 
+# Binaries
+**/bin/
+**/bin-int/
+!vendor/bin/premake/
+
 # files
 
-*.user
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user 

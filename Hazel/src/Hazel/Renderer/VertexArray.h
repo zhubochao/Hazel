@@ -20,6 +20,6 @@ namespace Hazel
 		virtual void SetIndexBuffer(Ref<IndexBuffer>&) = 0;
 
 
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 	};
 }
