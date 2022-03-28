@@ -1,6 +1,6 @@
 #include "hzpch.h"
 #include "Application.h"
-#include "Events/Event.h"
+#include "Hazel/Events/Event.h"
 #include "Input.h"
 #include "Platform/OpenGL/OpenGLBuffer.h"
 #include "Hazel/Renderer/Renderer.h"
@@ -45,6 +45,7 @@ namespace Hazel {
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize));
 
 		//HZ_CORE_TRACE("{0}", e);
 
@@ -90,4 +91,19 @@ namespace Hazel {
 		m_Running = false;
 		return true;
 	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+		return false;
+	}
+
 }

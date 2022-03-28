@@ -1,6 +1,6 @@
 #include"hzpch.h"
-#include"Hazel/Log.h"
-#include"Hazel/Core.h"
+#include"Hazel/Core/Log.h"
+#include"Hazel/Core/Core.h"
 #include"WindowsWindow.h"
 
 #include"Hazel/Events/Event.h"
@@ -51,7 +51,7 @@ namespace Hazel
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
-		m_Context = new OpenGLContext(m_Window);
+		m_Context = CreateScope<OpenGLContext>(m_Window);
 		m_Context->Init();
 		
 		glfwSetWindowUserPointer(m_Window, &m_Data);

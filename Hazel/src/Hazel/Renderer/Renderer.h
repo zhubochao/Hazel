@@ -16,6 +16,8 @@ namespace Hazel
 		static void BeginScene(OrthographicCamera& camera);
 		static void EndScene();
 
+		static void OnWindowResize(uint32_t width, uint32_t height);
+
 		static void Init() { RenderCommand::Init(); }
 
 		static void Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray,
@@ -28,7 +30,7 @@ namespace Hazel
 			glm::mat4 ViewProjectionMatrix;
 		};
 
-		static SceneData* s_SceneData;
+		static Scope<SceneData> s_SceneData;
 	};
 
 
