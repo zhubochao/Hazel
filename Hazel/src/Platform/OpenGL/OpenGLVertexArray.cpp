@@ -66,7 +66,7 @@ namespace Hazel
 				ShaderDataTypeToOpenGLBaseType(element.Type),
 				element.Normalized ? GL_TRUE : GL_FALSE,
 				layout.GetStride(),//大概是这一组数据的大小
-				(const void*)(intptr_t)element.Offset);//每个layout相对0位置的偏移
+				(const void*)element.Offset);//每个layout相对0位置的偏移
 			m_VertexBufferIndex++;
 		}
 		m_VertexBuffers.push_back(vertexBuffer);
