@@ -16,7 +16,9 @@ namespace Hazel {
 	Application* Application::m_Instance = nullptr;
 	Application::Application()
 	{
-		HZ_ASSERT(!m_Instance, "Application already exists!");
+		HZ_PROFILE_FUNCTION();
+
+		HZ_CORE_ASSERT(!m_Instance, "Application already exists!");
 		m_Instance = this;
 
 		m_Window = Scope<Window>(Window::Create());
@@ -29,20 +31,33 @@ namespace Hazel {
 
 	}
 
+	Application::~Application()
+	{
+		HZ_PROFILE_FUNCTION();
+
+		Renderer::Shutdown();
+	}
+
 	void Application::PushLayer(Layer* layer)
 	{
+		HZ_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
+		HZ_PROFILE_FUNCTION();
+
 		m_LayerStack.PushOverlay(overlay);
 		overlay->OnAttach();
 	}
 	
 	void Application::OnEvent(Event& e)
 	{
+		HZ_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize));
@@ -59,25 +74,38 @@ namespace Hazel {
 		}
 	}
 
-	void Application::Run() {
+	void Application::Run() 
+	{
+		HZ_PROFILE_FUNCTION();
+
 		while (m_Running)
 		{
+			HZ_PROFILE_SCOPE("RunLoop");
 			float time = (float)glfwGetTime();
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
-			for (Layer* layer : m_LayerStack)
+			if (!m_Minimized)
 			{
-				layer->OnUpdate(timestep);
-			}
-			m_ImGuiLayer->Begin();
+				{
+					HZ_PROFILE_SCOPE("LayerStack OnUpdate");
+					for (Layer* layer : m_LayerStack)
+					{
+						layer->OnUpdate(timestep);
+					}
+				}
+				
+				{
+					HZ_PROFILE_SCOPE("LayerStack OnImGuiRender");
+					m_ImGuiLayer->Begin();
 
-			for (Layer* layer : m_LayerStack)
-			{
-				layer->OnImGuiRender();
-			}
+					for (Layer* layer : m_LayerStack)
+					{
+						layer->OnImGuiRender();
+					}
 
-			m_ImGuiLayer->End();
-			
+					m_ImGuiLayer->End();
+				}
+			}
 			m_Window->OnUpdate();
 			
 		}
@@ -93,6 +121,8 @@ namespace Hazel {
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		HZ_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;
