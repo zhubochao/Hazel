@@ -4,6 +4,7 @@
 
 #include "imgui/imgui.h"
 #include "SandBox2D.h"
+#include "Game/GameLayer.h"
 
 //--Entry point---------
 #include<Hazel/Core/EntryPoint.h>
@@ -225,7 +226,8 @@ public:
 	Sandbox()
 	{
 		//PushLayer(new ExampleLayer());
-		PushLayer(new Sandbox2D());
+		//PushLayer(new Sandbox2D());
+		PushLayer(new GameLayer());
 	}
 
 	~Sandbox()

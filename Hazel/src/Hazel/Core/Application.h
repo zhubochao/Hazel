@@ -34,7 +34,7 @@ namespace Hazel{
 		LayerStack m_LayerStack;
 		static Application* m_Instance;
 
-		float m_LastFrameTime;
+		float m_LastFrameTime = 0.0f;
 
 	};
 
