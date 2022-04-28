@@ -64,13 +64,13 @@ namespace Hazel {
 
 		//HZ_CORE_TRACE("{0}", e);
 
-		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend();++it)
 		{
-			(*--it)->OnEvent(e);
 			if (e.m_Handled)
 			{
 				break;
 			}
+			(*it)->OnEvent(e);
 		}
 	}
 
@@ -112,6 +112,11 @@ namespace Hazel {
 	}
 
 
+
+	void Application::Close()
+	{
+		m_Running = false;
+	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{

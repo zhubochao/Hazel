@@ -17,7 +17,7 @@ namespace Hazel{
 		void OnEvent(Event& e);
 		
 		void Run();
-
+		void Close();
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
