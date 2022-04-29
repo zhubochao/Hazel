@@ -6,23 +6,23 @@
 namespace Hazel
 {
 
-	class HazelEditor : public Application
+	class HazelnutApp : public Application
 	{
 	public:
-		HazelEditor()
+		HazelnutApp()
 			: Application("Hazel Editor")
 		{
 			PushLayer(new EditorLayer());
 		}
 
-		~HazelEditor()
+		~HazelnutApp()
 		{
 		}
 	};
 
 	Application* CreateApplication()
 	{
-		return new HazelEditor();
+		return new HazelnutApp();
 	}
 
 }

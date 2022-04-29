@@ -70,7 +70,8 @@ namespace Hazel {
 			{
 				break;
 			}
-			(*it)->OnEvent(e);
+			//if (e.GetEventType() == EventType::MouseScrolled) 
+				(*it)->OnEvent(e);
 		}
 	}
 
