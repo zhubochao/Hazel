@@ -11,7 +11,7 @@ namespace Hazel{
 	class HAZEL_API Application
 	{
 	public:
-		Application();
+		Application(const std::string& name="Hazel App");
 		virtual ~Application();
 
 		void OnEvent(Event& e);
@@ -33,6 +33,7 @@ namespace Hazel{
 		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		static Application* m_Instance;
+		Application();
 
 		float m_LastFrameTime = 0.0f;
 

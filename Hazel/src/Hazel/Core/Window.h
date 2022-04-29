@@ -10,9 +10,9 @@ namespace Hazel
 	struct WindowProps
 	{
 		std::string Title;
-		unsigned int Width;
-		unsigned int Height;
-		WindowProps(const std::string& title="Hazel Engine", unsigned int w=1280, unsigned int h=720) : Title(title), Width(w), Height(h) {}
+		uint32_t Width;
+		uint32_t Height;
+		WindowProps(const std::string& title="Hazel Engine", uint32_t w=1280, uint32_t h=720) : Title(title), Width(w), Height(h) {}
 	};
 
 	class Window

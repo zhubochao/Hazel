@@ -24,9 +24,11 @@ IncludeDir["ImGui"] = "Hazel/vendor/imgui"
 IncludeDir["glm"] = "Hazel/vendor/glm"
 IncludeDir["stb_image"] = "Hazel/vendor/stb_image"
 
-include "Hazel/vendor/GLFW"
-include "Hazel/vendor/Glad"
-include "Hazel/vendor/imgui"
+group "Dependencies"
+	include "Hazel/vendor/GLFW"
+	include "Hazel/vendor/Glad"
+	include "Hazel/vendor/imgui"
+group ""
 
 project "Hazel"
 	location "Hazel"
@@ -104,6 +106,59 @@ project "Hazel"
 
 project "SandBox"
 	location "SandBox"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	
+	includedirs
+	{
+		"Hazel/vendor/spdlog/include",
+		"Hazel/src",
+		"Hazel/vendor",
+		"%{IncludeDir.glm}"
+	}
+
+	links
+	{
+		"Hazel"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+		defines
+		{
+			"HZ_PLATFORM_WINDOWS"
+		}
+
+	filter "configurations:Debug"
+		defines "HZ_DEBUG"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "HZ_Release"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "HZ_Dist"
+		runtime "Release"
+		optimize "on"
+
+
+project "Hazel-Editor"
+	location "Hazel-Editor"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
