@@ -21,6 +21,8 @@ namespace Hazel{
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
+		ImGuiLayer* Get_ImGuiLayer() { return m_ImGuiLayer; }
+
 		static inline Application& Get() { return *m_Instance;}
 		inline Window& GetWindow() {return *m_Window;}
 	private:
