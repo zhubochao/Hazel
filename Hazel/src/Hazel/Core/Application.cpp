@@ -9,8 +9,8 @@
 #include <glad/glad.h>
 #include "glfw/glfw3.h"
 
-namespace Hazel {
-
+namespace Hazel
+{
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
 	Application* Application::m_Instance = nullptr;
@@ -62,7 +62,6 @@ namespace Hazel {
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize));
 
-		//HZ_CORE_TRACE("{0}", e);
 
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend();++it)
 		{
@@ -70,8 +69,8 @@ namespace Hazel {
 			{
 				break;
 			}
-			//if (e.GetEventType() == EventType::MouseScrolled) 
-				(*it)->OnEvent(e);
+
+			(*it)->OnEvent(e);
 		}
 	}
 

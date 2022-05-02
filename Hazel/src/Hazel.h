@@ -15,6 +15,10 @@
 #include "Hazel/Core/MouseButtonCodes.h"
 #include "Hazel/Renderer/OrthographicCameraController.h"
 
+#include "Hazel/Scene/Scene.h"
+#include "Hazel/Scene/Components.h"
+
+
 #include "Hazel/ImGui/ImGuiLayer.h"
 
 // ---Renderer------------------------
