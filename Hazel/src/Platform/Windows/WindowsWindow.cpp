@@ -1,6 +1,6 @@
 #include"hzpch.h"
 #include"Hazel/Core/Log.h"
-#include"Hazel/Core/Core.h"
+#include"Hazel/Core/Base.h"
 #include"WindowsWindow.h"
 
 #include"Hazel/Events/Event.h"

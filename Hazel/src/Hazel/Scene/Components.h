@@ -1,5 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
+#include "SceneCamera.h"
 
 namespace Hazel
 {
@@ -10,6 +11,17 @@ namespace Hazel
 		TagComponent() = default;
 		TagComponent(const TagComponent&) = default;
 		TagComponent(const std::string& tag) : Tag(tag) {}
+	};
+
+	struct CameraComponent
+	{
+		SceneCamera Camera;
+		bool Primary = true; 
+		bool FixedAspectRatio = false;
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
+
 	};
 
 	struct TransformComponent
