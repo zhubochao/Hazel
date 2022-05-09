@@ -9,6 +9,7 @@
 
 #include<vector>
 #include<string>
+#include <sstream>
 #include<map>
 #include<set>
 #include<unordered_map>

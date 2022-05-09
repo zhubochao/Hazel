@@ -101,8 +101,8 @@ void GameLayer::OnImGuiRender()
 void GameLayer::OnEvent(Hazel::Event& e)
 {
 	EventDispatcher dispatcher(e);
-	dispatcher.Dispatch<WindowResizeEvent>(HZ_BIND_FUNC(GameLayer::OnWindowResize));
-	dispatcher.Dispatch<MouseButtonPressedEvent>(HZ_BIND_FUNC(GameLayer::OnMouseButtonPressed));
+	dispatcher.Dispatch<WindowResizeEvent>(HZ_BIND_EVENT_FN(GameLayer::OnWindowResize));
+	dispatcher.Dispatch<MouseButtonPressedEvent>(HZ_BIND_EVENT_FN(GameLayer::OnMouseButtonPressed));
 }
 
 bool GameLayer::OnMouseButtonPressed(Hazel::MouseButtonEvent& e)

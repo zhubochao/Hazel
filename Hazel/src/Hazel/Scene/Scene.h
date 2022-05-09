@@ -24,3 +24,4 @@ namespace Hazel
 		friend class Entity;
 	};
 }
+

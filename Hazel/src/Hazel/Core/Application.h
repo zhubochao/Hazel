@@ -1,10 +1,16 @@
 #pragma once
-#include"Base.h"
-#include"Window.h"	
+#include "Hazel/Core/Base.h"
+
+#include "Hazel/Core/Window.h"
 #include "Hazel/Core/LayerStack.h"
+#include "Hazel/Events/Event.h"
 #include "Hazel/Events/ApplicationEvent.h"
+
+#include "Hazel/Core/Timestep.h"
+
 #include "Hazel/ImGui/ImGuiLayer.h"
 
+int main(int argc, char** argv);
 
 
 namespace Hazel{
@@ -35,10 +41,10 @@ namespace Hazel{
 		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		static Application* m_Instance;
-		Application();
+
 
 		float m_LastFrameTime = 0.0f;
-
+		friend int ::main(int argc, char** argv);
 	};
 
 
