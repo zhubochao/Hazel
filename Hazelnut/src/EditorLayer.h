@@ -1,6 +1,6 @@
 #pragma once
 #include "Hazel.h"
-
+#include "Panels/SceneHierarchyPanel.h"
 
 namespace Hazel
 {
@@ -39,6 +39,9 @@ namespace Hazel
 		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
 
 		glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+		//Panel
+		SceneHierarchyPanel m_SceneHierarchyPanel;
 	};
 
 }
