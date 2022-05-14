@@ -6,9 +6,13 @@
 #include <iomanip>
 #include <string>
 #include <thread>
+#include <mutex>
+#include <sstream>
 
-namespace Hazel 
-{
+#include "Hazel/Core/Log.h"
+
+namespace Hazel {
+
 	using FloatingPointMicroseconds = std::chrono::duration<double, std::micro>;
 
 	struct ProfileResult

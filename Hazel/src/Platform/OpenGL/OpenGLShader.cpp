@@ -69,7 +69,7 @@ namespace Hazel
 				result.resize(size);
 				in.seekg(0, std::ios::beg);
 				in.read(&result[0], size);
-				in.close();
+				//in.close();
 			}
 			else
 			{

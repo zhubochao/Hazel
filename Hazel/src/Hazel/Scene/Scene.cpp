@@ -65,12 +65,19 @@ namespace Hazel
 		}
 		if (mainCamera)
 		{
+//			float rotateSpeed = 10.0f;
+//			static float rotation = 0;
+//			rotation += ts* rotateSpeed;
+
 			Renderer2D::BeginScene(mainCamera->GetProjection(), *cameraTransform);
 			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 			for (auto entity : group)
 			{
 				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
+				//auto rotate = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), { 0.0f, 0.0f, 1.0f });
+
+				//glm::mat4 trans = transform.Transform * rotate;
 				Renderer2D::DrawQuad(transform, sprite.Color);
 			}
 			Renderer2D::EndScene();

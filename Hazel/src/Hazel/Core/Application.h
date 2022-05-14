@@ -14,7 +14,7 @@ int main(int argc, char** argv);
 
 
 namespace Hazel{
-	class HAZEL_API Application
+	class Application
 	{
 	public:
 		Application(const std::string& name="Hazel App");
