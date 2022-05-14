@@ -12,7 +12,7 @@ namespace Hazel
 		std::string Title;
 		uint32_t Width;
 		uint32_t Height;
-		WindowProps(const std::string& title="Hazel Engine", uint32_t w=1280, uint32_t h=720) : Title(title), Width(w), Height(h) {}
+		WindowProps(const std::string& title="Hazel Engine", uint32_t w=1600, uint32_t h=900) : Title(title), Width(w), Height(h) {}
 	};
 
 	class Window
