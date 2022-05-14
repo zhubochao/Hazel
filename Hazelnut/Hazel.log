@@ -1,6 +1,6 @@
-[15:40:33] [info] HAZEL: Creating Window Hazel Editor (1280, 720)
-[15:40:34] [info] HAZEL: OpenGL Info:
-[15:40:34] [info] HAZEL:   Vendor: NVIDIA Corporation
-[15:40:34] [info] HAZEL:   Renderer: NVIDIA GeForce GTX 1070/PCIe/SSE2
-[15:40:34] [info] HAZEL:   Version: 4.6.0 NVIDIA 512.77
-[15:40:54] [info] HAZEL: Terminating GLFW
+[16:12:18] [info] HAZEL: Creating Window Hazel Editor (1280, 720)
+[16:12:19] [info] HAZEL: OpenGL Info:
+[16:12:19] [info] HAZEL:   Vendor: NVIDIA Corporation
+[16:12:19] [info] HAZEL:   Renderer: NVIDIA GeForce GTX 1070/PCIe/SSE2
+[16:12:19] [info] HAZEL:   Version: 4.6.0 NVIDIA 512.77
+[16:14:21] [info] HAZEL: Terminating GLFW
