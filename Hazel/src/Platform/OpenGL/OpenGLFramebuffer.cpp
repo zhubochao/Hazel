@@ -49,7 +49,7 @@ namespace Hazel {
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
-
+	
 	void OpenGLFramebuffer::Bind()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
@@ -65,7 +65,7 @@ namespace Hazel {
 	{
 		if(width == 0 || height == 0 || width > s_MaxFramebufferSize || height > s_MaxFramebufferSize)
 		{
-			HZ_CORE_WRAN("Attempted to rezize framebuffer to {0}, {1}", width, height);
+			HZ_CORE_WARN("Attempted to rezize framebuffer to {0}, {1}", width, height);
 			return;
 		}
 		m_Specification.Width = width;
