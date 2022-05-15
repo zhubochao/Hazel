@@ -40,6 +40,9 @@ namespace Hazel
 		ofn.nMaxFile = sizeof(szFile);
 		ofn.lpstrFilter = filter;
 		ofn.nFilterIndex = 1;
+
+		ofn.lpstrDefExt = strchr(filter, '\0') + 1;
+
 		ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
 		if (GetSaveFileNameA(&ofn) == TRUE)
 		{
