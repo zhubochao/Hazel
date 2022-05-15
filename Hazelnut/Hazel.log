@@ -1,11 +1,11 @@
-[22:39:29] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
-[22:39:30] [info] HAZEL: OpenGL Info:
-[22:39:30] [info] HAZEL:   Vendor: NVIDIA Corporation
-[22:39:30] [info] HAZEL:   Renderer: NVIDIA GeForce GTX 1070/PCIe/SSE2
-[22:39:30] [info] HAZEL:   Version: 4.6.0 NVIDIA 512.77
-[22:39:34] [trace] HAZEL: Deserializing scene 'Untitled'
-[22:39:34] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Top
-[22:39:34] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera
-[22:39:34] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Right
-[22:39:34] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Left
-[22:39:57] [info] HAZEL: Terminating GLFW
+[01:18:57] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
+[01:18:58] [info] HAZEL: OpenGL Info:
+[01:18:58] [info] HAZEL:   Vendor: NVIDIA Corporation
+[01:18:58] [info] HAZEL:   Renderer: NVIDIA GeForce GTX 1070/PCIe/SSE2
+[01:18:58] [info] HAZEL:   Version: 4.6.0 NVIDIA 512.77
+[01:19:02] [trace] HAZEL: Deserializing scene 'Untitled'
+[01:19:02] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Top
+[01:19:02] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera
+[01:19:02] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Right
+[01:19:02] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Left
+[01:19:28] [info] HAZEL: Terminating GLFW
