@@ -6,7 +6,6 @@ bin-int/
 # Binaries
 **/bin/
 **/bin-int/
-!vendor/bin/premake/
 **.json
 
 # files
