@@ -1,11 +1,11 @@
-[21:02:14] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
-[21:02:15] [info] HAZEL: OpenGL Info:
-[21:02:15] [info] HAZEL:   Vendor: NVIDIA Corporation
-[21:02:15] [info] HAZEL:   Renderer: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2
-[21:02:15] [info] HAZEL:   Version: 4.6.0 NVIDIA 516.40
-[21:02:21] [trace] HAZEL: Deserializing scene 'Untitled'
-[21:02:21] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Green Square
-[21:02:21] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Red Square
-[21:02:21] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera A
-[21:02:21] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera B
-[21:02:28] [info] HAZEL: Terminating GLFW
+[21:12:52] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
+[21:12:53] [info] HAZEL: OpenGL Info:
+[21:12:53] [info] HAZEL:   Vendor: NVIDIA Corporation
+[21:12:53] [info] HAZEL:   Renderer: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2
+[21:12:53] [info] HAZEL:   Version: 4.6.0 NVIDIA 516.40
+[21:12:59] [trace] HAZEL: Deserializing scene 'Untitled'
+[21:12:59] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Green Square
+[21:12:59] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Red Square
+[21:12:59] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera A
+[21:12:59] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera B
+[21:13:34] [info] HAZEL: Terminating GLFW
