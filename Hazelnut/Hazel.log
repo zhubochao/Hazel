@@ -1,19 +1,19 @@
-[17:10:17] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
-[17:10:17] [info] HAZEL: OpenGL Info:
-[17:10:17] [info] HAZEL:   Vendor: NVIDIA Corporation
-[17:10:17] [info] HAZEL:   Renderer: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2
-[17:10:17] [info] HAZEL:   Version: 4.6.0 NVIDIA 516.40
-[17:10:17] [trace] HAZEL: OpenGLShader::Reflect - GL_VERTEX_SHADER assets/shaders/Texture.glsl
-[17:10:17] [trace] HAZEL:     1 uniform buffers
-[17:10:17] [trace] HAZEL:     0 resources
-[17:10:17] [trace] HAZEL: Uniform buffers:
-[17:10:17] [trace] HAZEL:   _47_49
-[17:10:17] [trace] HAZEL:     Size = 64
-[17:10:17] [trace] HAZEL:     Binding = 0
-[17:10:17] [trace] HAZEL:     Members = 1
-[17:10:17] [trace] HAZEL: OpenGLShader::Reflect - GL_FRAGMENT_SHADER assets/shaders/Texture.glsl
-[17:10:17] [trace] HAZEL:     0 uniform buffers
-[17:10:17] [trace] HAZEL:     1 resources
-[17:10:17] [trace] HAZEL: Uniform buffers:
-[17:10:17] [warning] HAZEL: Shader creation took 4.3465004 ms
-[17:10:37] [info] HAZEL: Terminating GLFW
+[19:26:01] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
+[19:26:02] [info] HAZEL: OpenGL Info:
+[19:26:02] [info] HAZEL:   Vendor: NVIDIA Corporation
+[19:26:02] [info] HAZEL:   Renderer: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2
+[19:26:02] [info] HAZEL:   Version: 4.6.0 NVIDIA 516.40
+[19:26:02] [trace] HAZEL: OpenGLShader::Reflect - GL_VERTEX_SHADER assets/shaders/Texture.glsl
+[19:26:02] [trace] HAZEL:     1 uniform buffers
+[19:26:02] [trace] HAZEL:     0 resources
+[19:26:02] [trace] HAZEL: Uniform buffers:
+[19:26:02] [trace] HAZEL:   _47_49
+[19:26:02] [trace] HAZEL:     Size = 64
+[19:26:02] [trace] HAZEL:     Binding = 0
+[19:26:02] [trace] HAZEL:     Members = 1
+[19:26:02] [trace] HAZEL: OpenGLShader::Reflect - GL_FRAGMENT_SHADER assets/shaders/Texture.glsl
+[19:26:02] [trace] HAZEL:     0 uniform buffers
+[19:26:02] [trace] HAZEL:     1 resources
+[19:26:02] [trace] HAZEL: Uniform buffers:
+[19:26:02] [warning] HAZEL: Shader creation took 4.6268005 ms
+[19:26:22] [info] HAZEL: Terminating GLFW
