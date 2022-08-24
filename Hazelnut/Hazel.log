@@ -1,11 +1,24 @@
-[21:12:52] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
-[21:12:53] [info] HAZEL: OpenGL Info:
-[21:12:53] [info] HAZEL:   Vendor: NVIDIA Corporation
-[21:12:53] [info] HAZEL:   Renderer: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2
-[21:12:53] [info] HAZEL:   Version: 4.6.0 NVIDIA 516.40
-[21:12:59] [trace] HAZEL: Deserializing scene 'Untitled'
-[21:12:59] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Green Square
-[21:12:59] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Red Square
-[21:12:59] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera A
-[21:12:59] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera B
-[21:13:34] [info] HAZEL: Terminating GLFW
+[16:26:42] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
+[16:26:42] [info] HAZEL: OpenGL Info:
+[16:26:42] [info] HAZEL:   Vendor: NVIDIA Corporation
+[16:26:42] [info] HAZEL:   Renderer: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2
+[16:26:42] [info] HAZEL:   Version: 4.6.0 NVIDIA 516.40
+[16:26:42] [trace] HAZEL: OpenGLShader::Reflect - GL_VERTEX_SHADER assets/shaders/Texture.glsl
+[16:26:42] [trace] HAZEL:     1 uniform buffers
+[16:26:42] [trace] HAZEL:     0 resources
+[16:26:42] [trace] HAZEL: Uniform buffers:
+[16:26:42] [trace] HAZEL:   _47_49
+[16:26:42] [trace] HAZEL:     Size = 64
+[16:26:42] [trace] HAZEL:     Binding = 0
+[16:26:42] [trace] HAZEL:     Members = 1
+[16:26:42] [trace] HAZEL: OpenGLShader::Reflect - GL_FRAGMENT_SHADER assets/shaders/Texture.glsl
+[16:26:42] [trace] HAZEL:     0 uniform buffers
+[16:26:42] [trace] HAZEL:     1 resources
+[16:26:42] [trace] HAZEL: Uniform buffers:
+[16:26:42] [warning] HAZEL: Shader creation took 5.0335007 ms
+[16:26:47] [trace] HAZEL: Deserializing scene 'Untitled'
+[16:26:47] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Green Square
+[16:26:47] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Red Square
+[16:26:47] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera A
+[16:26:47] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera B
+[16:27:00] [info] HAZEL: Terminating GLFW

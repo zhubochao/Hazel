@@ -14,10 +14,25 @@ int main(int argc, char** argv);
 
 
 namespace Hazel{
+
+
+	struct ApplicationCommandLineArgs
+	{
+		int Count = 0;
+		char** Args = nullptr;
+
+		const char* operator[](int index) const
+		{
+			HZ_CORE_ASSERT(index < Count);
+			return Args[index];
+		}
+	};
+
+
 	class Application
 	{
 	public:
-		Application(const std::string& name="Hazel App");
+		Application(const std::string& name="Hazel App", ApplicationCommandLineArgs args = ApplicationCommandLineArgs());
 		virtual ~Application();
 
 		void OnEvent(Event& e);
@@ -29,6 +44,8 @@ namespace Hazel{
 
 		ImGuiLayer* Get_ImGuiLayer() { return m_ImGuiLayer; }
 
+		ApplicationCommandLineArgs GetCommandLineArgs() const { return m_CommandLineArgs; }
+
 		static inline Application& Get() { return *m_Instance;}
 		inline Window& GetWindow() {return *m_Window;}
 	private:
@@ -37,6 +54,7 @@ namespace Hazel{
 	private:
 		Scope<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
+		ApplicationCommandLineArgs m_CommandLineArgs;
 		bool m_Running = true;
 		bool m_Minimized = false;
 		LayerStack m_LayerStack;
@@ -49,6 +67,6 @@ namespace Hazel{
 
 
 	//To be defined in CLIENT
-	Application* CreateApplication();
+	Application* CreateApplication(ApplicationCommandLineArgs args);
 }
 
