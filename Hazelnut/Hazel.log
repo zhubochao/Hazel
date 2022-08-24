@@ -1,24 +1,24 @@
-[20:11:37] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
-[20:11:37] [info] HAZEL: OpenGL Info:
-[20:11:37] [info] HAZEL:   Vendor: NVIDIA Corporation
-[20:11:37] [info] HAZEL:   Renderer: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2
-[20:11:37] [info] HAZEL:   Version: 4.6.0 NVIDIA 516.40
-[20:11:37] [trace] HAZEL: OpenGLShader::Reflect - GL_VERTEX_SHADER assets/shaders/Texture.glsl
-[20:11:37] [trace] HAZEL:     1 uniform buffers
-[20:11:37] [trace] HAZEL:     0 resources
-[20:11:37] [trace] HAZEL: Uniform buffers:
-[20:11:37] [trace] HAZEL:   _47_49
-[20:11:37] [trace] HAZEL:     Size = 64
-[20:11:37] [trace] HAZEL:     Binding = 0
-[20:11:37] [trace] HAZEL:     Members = 1
-[20:11:37] [trace] HAZEL: OpenGLShader::Reflect - GL_FRAGMENT_SHADER assets/shaders/Texture.glsl
-[20:11:37] [trace] HAZEL:     0 uniform buffers
-[20:11:37] [trace] HAZEL:     1 resources
-[20:11:37] [trace] HAZEL: Uniform buffers:
-[20:11:37] [warning] HAZEL: Shader creation took 4.5225 ms
-[20:11:46] [trace] HAZEL: Deserializing scene 'Untitled'
-[20:11:46] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Green Square
-[20:11:46] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Red Square
-[20:11:46] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera A
-[20:11:46] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera B
-[20:14:25] [info] HAZEL: Terminating GLFW
+[20:18:59] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
+[20:18:59] [info] HAZEL: OpenGL Info:
+[20:18:59] [info] HAZEL:   Vendor: NVIDIA Corporation
+[20:18:59] [info] HAZEL:   Renderer: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2
+[20:18:59] [info] HAZEL:   Version: 4.6.0 NVIDIA 516.40
+[20:18:59] [trace] HAZEL: OpenGLShader::Reflect - GL_VERTEX_SHADER assets/shaders/Texture.glsl
+[20:18:59] [trace] HAZEL:     1 uniform buffers
+[20:18:59] [trace] HAZEL:     0 resources
+[20:18:59] [trace] HAZEL: Uniform buffers:
+[20:18:59] [trace] HAZEL:   _46_48
+[20:18:59] [trace] HAZEL:     Size = 64
+[20:18:59] [trace] HAZEL:     Binding = 0
+[20:18:59] [trace] HAZEL:     Members = 1
+[20:18:59] [trace] HAZEL: OpenGLShader::Reflect - GL_FRAGMENT_SHADER assets/shaders/Texture.glsl
+[20:18:59] [trace] HAZEL:     0 uniform buffers
+[20:18:59] [trace] HAZEL:     1 resources
+[20:18:59] [trace] HAZEL: Uniform buffers:
+[20:18:59] [warning] HAZEL: Shader creation took 324.97464 ms
+[20:19:07] [trace] HAZEL: Deserializing scene 'Untitled'
+[20:19:07] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Green Square
+[20:19:07] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Red Square
+[20:19:07] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera A
+[20:19:07] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera B
+[20:19:54] [info] HAZEL: Terminating GLFW
