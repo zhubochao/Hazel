@@ -1,19 +1,24 @@
-[19:26:01] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
-[19:26:02] [info] HAZEL: OpenGL Info:
-[19:26:02] [info] HAZEL:   Vendor: NVIDIA Corporation
-[19:26:02] [info] HAZEL:   Renderer: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2
-[19:26:02] [info] HAZEL:   Version: 4.6.0 NVIDIA 516.40
-[19:26:02] [trace] HAZEL: OpenGLShader::Reflect - GL_VERTEX_SHADER assets/shaders/Texture.glsl
-[19:26:02] [trace] HAZEL:     1 uniform buffers
-[19:26:02] [trace] HAZEL:     0 resources
-[19:26:02] [trace] HAZEL: Uniform buffers:
-[19:26:02] [trace] HAZEL:   _47_49
-[19:26:02] [trace] HAZEL:     Size = 64
-[19:26:02] [trace] HAZEL:     Binding = 0
-[19:26:02] [trace] HAZEL:     Members = 1
-[19:26:02] [trace] HAZEL: OpenGLShader::Reflect - GL_FRAGMENT_SHADER assets/shaders/Texture.glsl
-[19:26:02] [trace] HAZEL:     0 uniform buffers
-[19:26:02] [trace] HAZEL:     1 resources
-[19:26:02] [trace] HAZEL: Uniform buffers:
-[19:26:02] [warning] HAZEL: Shader creation took 4.6268005 ms
-[19:26:22] [info] HAZEL: Terminating GLFW
+[20:11:37] [info] HAZEL: Creating Window Hazel Editor (1600, 900)
+[20:11:37] [info] HAZEL: OpenGL Info:
+[20:11:37] [info] HAZEL:   Vendor: NVIDIA Corporation
+[20:11:37] [info] HAZEL:   Renderer: NVIDIA GeForce RTX 3060 Ti/PCIe/SSE2
+[20:11:37] [info] HAZEL:   Version: 4.6.0 NVIDIA 516.40
+[20:11:37] [trace] HAZEL: OpenGLShader::Reflect - GL_VERTEX_SHADER assets/shaders/Texture.glsl
+[20:11:37] [trace] HAZEL:     1 uniform buffers
+[20:11:37] [trace] HAZEL:     0 resources
+[20:11:37] [trace] HAZEL: Uniform buffers:
+[20:11:37] [trace] HAZEL:   _47_49
+[20:11:37] [trace] HAZEL:     Size = 64
+[20:11:37] [trace] HAZEL:     Binding = 0
+[20:11:37] [trace] HAZEL:     Members = 1
+[20:11:37] [trace] HAZEL: OpenGLShader::Reflect - GL_FRAGMENT_SHADER assets/shaders/Texture.glsl
+[20:11:37] [trace] HAZEL:     0 uniform buffers
+[20:11:37] [trace] HAZEL:     1 resources
+[20:11:37] [trace] HAZEL: Uniform buffers:
+[20:11:37] [warning] HAZEL: Shader creation took 4.5225 ms
+[20:11:46] [trace] HAZEL: Deserializing scene 'Untitled'
+[20:11:46] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Green Square
+[20:11:46] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Red Square
+[20:11:46] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera A
+[20:11:46] [trace] HAZEL: Deserialized entity with ID = 12837192831273, name = Camera B
+[20:14:25] [info] HAZEL: Terminating GLFW
