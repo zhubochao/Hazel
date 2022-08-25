@@ -65,13 +65,6 @@ namespace Hazel
 	struct NativeScriptComponent
 	{
 		ScriptableEntity* Instance = nullptr;
-
-// 		std::function<void()> InstantiateFunction;
-// 		std::function<void()> DestroyInstanceFunction;
-// 
-// 		std::function<void(ScriptableEntity*)> OnCreateFunction;
-// 		std::function<void(ScriptableEntity*)> OnDestroyFunction;
-// 		std::function<void(ScriptableEntity*, Timestep)> OnUpdateFunction;
 		
 		ScriptableEntity* (*InstantiateScript)();
 		void (*DestroyScript)(NativeScriptComponent*);
@@ -81,12 +74,35 @@ namespace Hazel
 		{
 			InstantiateScript = []() { return static_cast<ScriptableEntity*>(new T()); };
 			DestroyScript = [](NativeScriptComponent* nsc) {delete nsc->Instance; nsc->Instance = nullptr; };
-// 			InstantiateFunction = [&](){ Instance = new T(); };
-// 			DestroyInstanceFunction = [&]() {delete (T*)Instance; Instance = nullptr; };
-// 			
-// 			OnCreateFunction = [](ScriptableEntity* instance) {((T*)instance)->OnCreate(); };
-// 			OnDestroyFunction = [](ScriptableEntity* instance) {((T*)instance)->OnDestroy(); };
-//  		OnUpdateFunction = [](ScriptableEntity* instance, Timestep ts) {((T*)instance)->OnUpdate(ts); };
 		}
+	};
+
+	struct Rigidbody2DComponent
+	{
+		enum class BodyType {Static = 0, Dynamic, Kinematic};
+		BodyType Type = BodyType::Static;
+		bool FixedRotation = false;
+
+		void* RuntimeBody = nullptr;
+
+		Rigidbody2DComponent() = default;
+		Rigidbody2DComponent(const Rigidbody2DComponent&) = default;
+	};
+
+	struct BoxCollider2DComponent
+	{
+		glm::vec2 Offset = { 0.0f, 0.0f };
+		glm::vec2 Size = { 0.5f, 0.5f };
+
+		float Density = 1.0f;
+		float Friction = 0.5f;
+		float Restitution = 0.0f;
+		float RestitutionThreshold = 0.5f;
+
+		void* RuntimeFixture = nullptr;
+
+		BoxCollider2DComponent() = default;
+		BoxCollider2DComponent(const BoxCollider2DComponent&) = default;
+
 	};
 }
