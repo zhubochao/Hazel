@@ -1,6 +1,9 @@
 #pragma once
 #include "entt.hpp"
+
 #include "Scene.h"
+#include "Hazel/Core/UUID.h"
+#include "Components.h"
 
 namespace Hazel
 {
@@ -43,6 +46,9 @@ namespace Hazel
 
 		operator bool() const { return m_EntityHandle != entt::null; }
 		operator uint32_t() const { return (uint32_t)m_EntityHandle; }
+		
+		UUID GetUUID() { return GetComponent<IDComponent>().ID; }
+
 
 		bool operator==(const Entity& other) const
 		{
