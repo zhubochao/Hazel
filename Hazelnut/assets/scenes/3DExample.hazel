@@ -22,7 +22,7 @@ Entities:
     TagComponent:
       Tag: CameraA
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [0, 0, 5]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -36,3 +36,14 @@ Entities:
         OrthographicFar: 1
       Primary: true
       FixedAspectRatio: false
+  - Entity: 9653741985522022831
+    TagComponent:
+      Tag: Circle Entity
+    TransformComponent:
+      Translation: [1.20000005, 1.60000002, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CircleRendererComponent:
+      Color: [0.215686277, 0.478431374, 0.137254909, 0.549019635]
+      Thickness: 0.425000012
+      Fade: 0.061999999
